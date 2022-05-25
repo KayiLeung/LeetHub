@@ -11,27 +11,17 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function(list1, list2) {
-    const head = new ListNode(null)
-    let tail = head
-    let current1 = list1
-    let current2 = list2
+
+
+    if (list1 === null && list2 === null) return null
+    if (list1 === null) return list2
+    if (list2 === null) return list1
     
-    while (current1 !== null && current2 !== null) {
-        let val1 = current1.val
-        let val2 = current2.val
-        if (val1 <= val2) {
-            tail.next = current1
-            current1 = current1.next
-            tail = tail.next
-        } else {
-            tail.next = current2
-            current2 = current2.next
-            tail = tail.next
-        }
+    if (list1.val < list2.val) {
+        list1.next = mergeTwoLists(list1.next, list2)
+        return list1
+    } else {
+        list2.next = mergeTwoLists(list1, list2.next)
+        return list2
     }
-    
-    if (current1 === null) tail.next = current2
-    if (current2 === null) tail.next = current1
-    
-    return head.next
-};
+}
