@@ -3,21 +3,17 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    const alpha = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('')
-    // let newStr = s.replace(/ /g, '').toLowerCase()
+    let newStr = s.replace(/[^a-z0-9]/gi, '').toLowerCase()
+    console.log(newStr)
     let i = 0
-    let j = s.length - 1
+    let j = newStr.length - 1
     lowerCaseStr = s.toLowerCase()
     
     while(i < j) {
-        const start = lowerCaseStr[i]
-        const end = lowerCaseStr[j]
+        let start = newStr[i]
+        let end = newStr[j]
         
-        if (!alpha.includes(start)) {
-            i++
-        } else if (!alpha.includes(end)) {
-            j--
-        } else if (start === end) {
+         if (start === end) {
             i++
             j--
         } else {
