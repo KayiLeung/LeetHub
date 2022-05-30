@@ -4,25 +4,23 @@
  * @return {number}
  */
 var search = function(nums, target, res = 0) {
-    if (nums.length === 1 && nums[0] === target) {
-        return res
-    } 
+
+    let start = 0
+    let end = nums.length  -1
+    let med
     
-    if (nums.length === 0) return -1
-    
-    let mid = Math.floor(nums.length / 2)
-    
-    
-    if (nums[mid] === target) {
-        return res + mid 
-    } else if (nums[mid] < target) {
-        res += mid + 1
-        return search(nums.slice(mid+1), target, res)
-    } else {
-        return search(nums.slice(0,mid), target, res)
+    while (start <= end) {
+        med = Math.floor((start + end) / 2)
+        if (nums[med] === target)
+            return med
+        else if (nums[med] < target) {
+            start = med + 1  
+        } else {
+            end = med - 1
+        }
     }
 
     
 
-    
+    return -1
 };
