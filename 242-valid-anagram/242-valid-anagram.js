@@ -13,7 +13,6 @@ var isAnagram = function(s, t) {
         } 
         charCount[s[i]] += 1
     }
-    console.log(charCount)
     for (let i = 0; i < t.length; i++) {
         if (charCount[t[i]] === undefined ) {
             return false
