@@ -11,7 +11,6 @@ var isValid = function(s) {
    const stack = []
    
    for (let i = 0; i< s.length; i++) {
-       console.log(stack)
        if (brackets[s[i]] !== undefined) {
            stack.push(brackets[s[i]])
        } else {
