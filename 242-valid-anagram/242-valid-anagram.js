@@ -5,6 +5,7 @@
  */
 var isAnagram = function(s, t) {
     let charCount = {}
+    if (s.length !== t.length) return false
     
     for(let i = 0; i < s.length; i++) {
         if (charCount[s[i]] === undefined) {
