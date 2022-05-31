@@ -20,7 +20,7 @@ var maxSubArray = function(nums) {
     
     while ( i < nums.length) {
         current += nums[i]
-        console.log(current)
+
         maxSum = Math.max(current, maxSum)
         if (current < 0) {
             current = 0
