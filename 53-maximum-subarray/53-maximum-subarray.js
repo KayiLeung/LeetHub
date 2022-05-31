@@ -14,16 +14,20 @@
 
 
 var maxSubArray = function(nums) {
-  let cur = nums[0];
-  let res = nums[0];
-  for(let i = 1; i < nums.length; i ++){
-    if(cur < 0){
-      cur = nums[i];
+    let maxSum = -Infinity
+    let current = 0
+    let i = 0
+    
+    while ( i < nums.length) {
+        current += nums[i]
+        console.log(current)
+        maxSum = Math.max(current, maxSum)
+        if (current < 0) {
+            current = 0
+        }
+        
+        i++
+        
     }
-    else {
-      cur += nums[i];
-    }
-    res = Math.max(res, cur);
-  }
-  return res;
-};
+    return maxSum
+}
