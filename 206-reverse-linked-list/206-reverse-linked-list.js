@@ -10,21 +10,18 @@
  * @return {ListNode}
  */
 var reverseList = function(head) {
-    // if (head.val === 0) return []
-    let reversed = new ListNode(null)
-    let tail = reversed
+   let pre = null
+   
+   while (head) {
+          const next = head.next
+          head.next = pre
+          pre = head
+          head = next
+          }
     
-    let values = []
-    let current = head
-    while (current !== null) {
-        values.push(current.val)
-        current = current.next
-    }
+    return pre
     
-    while (values.length) {
-        tail.next = new ListNode(values.pop())
-        tail = tail.next
-    }
     
-    return reversed.next
+    
 };
+
