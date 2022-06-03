@@ -3,14 +3,6 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    const numCount = {}
-    
-    for (num of nums) {
-        if (numCount[num] === undefined) {
-            numCount[num] = 1
-        } else {
-            return true
-        }
-    }
-    return false
-};
+    var numsSet = new Set(nums)
+    return numsSet.size !== nums.length
+}
