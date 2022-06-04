@@ -9,10 +9,10 @@ var twoSum = function(nums, target) {
     
     for (let i = 0; i < nums.length; i++) {
         let subTarget = target - nums[i]
-        if (prevNums[subTarget] === undefined) {
-            prevNums[nums[i]] = i
-        } else {
+        if (prevNums.hasOwnProperty(subTarget)) {
             return [prevNums[subTarget], i]
+        } else {
+            prevNums[nums[i]] = i
         }
     }
     
