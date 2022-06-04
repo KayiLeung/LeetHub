@@ -3,17 +3,15 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    let str = s.replace(/[^0-9a-z]/gi, '').toLowerCase()
     
-    let i = 0
-    let j = str.length - 1
+    let newStr = s.replace(/[^a-z0-9]/gi, '').toLowerCase()
+    let left = 0
+    let right = newStr.length - 1
     
-    while(i < j) {
-        if (str[i] !== str[j]) {
-            return false   
-        }
-        i++
-        j--
+    while (left < right) {
+        if (newStr[left] !== newStr[right]) return false
+        left++
+        right--
     }
     
     return true
