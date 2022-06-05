@@ -14,20 +14,18 @@
 
 
 var maxSubArray = function(nums) {
-    let maxSum = -Infinity
-    let current = 0
-    let i = 0
+    let currentSum = 0
+    let max = -Infinity
     
-    while ( i < nums.length) {
-        current += nums[i]
-
-        maxSum = Math.max(current, maxSum)
-        if (current < 0) {
-            current = 0
+    for (num of nums) {
+        currentSum += num
+        if (currentSum < 0) {
+            max = Math.max(max, currentSum)
+            currentSum = 0
+        } else {
+            max = Math.max(max, currentSum)
         }
-        
-        i++
-        
     }
-    return maxSum
+    
+    return max
 }
