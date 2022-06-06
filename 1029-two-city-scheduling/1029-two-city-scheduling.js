@@ -4,12 +4,12 @@
  */
 var twoCitySchedCost = function(costs) {
     
-    let sorted = costs.sort((a,b) => (a[0] - a[1]) - (b[0] - b[1]))
+    costs.sort((a,b) => (a[0] - a[1]) - (b[0] - b[1]))
     let total = 0
     let half = costs.length / 2
     
     for (let i = 0; i < costs.length ; i++) {
-        let cost = sorted[i]
+        let cost = costs[i]
         if (i < half) {
             total += cost[0]
         } else {
