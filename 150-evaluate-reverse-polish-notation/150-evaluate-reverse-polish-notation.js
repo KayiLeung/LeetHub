@@ -4,9 +4,12 @@
  */
 var evalRPN = function(tokens) {
     const nums = []
-    let puns = ['*', "/","+", "-"]
+    puns = {'*':0, 
+        "/":1,
+        "+":2,
+        "-":3}
     for (let t of tokens) {
-        if (!puns.includes(t)) {
+        if (!Object.hasOwn(puns, t)) {
             nums.push(Number(t))
      
         } else {
