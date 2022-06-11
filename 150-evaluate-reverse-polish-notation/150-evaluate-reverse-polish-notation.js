@@ -3,38 +3,22 @@
  * @return {number}
  */
 var evalRPN = function(tokens) {
-    const nums = []
-    puns = {'*':0, 
-        "/":1,
-        "+":2,
-        "-":3}
-    for (let t of tokens) {
-        if (!Object.hasOwn(puns, t)) {
-            nums.push(Number(t))
-     
-        } else {
-            let second = nums.pop()
-            let first = nums.pop()
-            let res = 0
-            switch (t) {
-                case '+' :
-                    res = first + second
-                    nums.push(res);
-                    break
-                case '*':
-                    res = first * second
-                    nums.push(res);
-                    break
-                case '-':
-                    res = first - second;
-                    nums.push(res);
-                    break
-                case '/':
-                    res = Math.trunc(first / second);
-                    nums.push(res);
-                    break
-            }
-        }
+    const operation = {
+        '+': (a, b) => a + b,
+        '-': (a, b) => a - b,
+        '*': (a, b) => a * b,
+        '/': (a, b) => ~~(a / b) // ~~ means floor towards 0
     }
-    return nums
+    
+    const stack = [];
+    let a, b;
+    
+    for(let item of tokens) {
+        if(operation[item] !== undefined) {
+            b = stack.pop();
+            a = stack.pop();
+            stack.push(operation[item](a, b));
+        } else stack.push(+item);
+    }
+    return stack.pop()
 };
