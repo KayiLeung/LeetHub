@@ -11,21 +11,14 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    if (root === null) return 0
+    if (!root) return 0
     
-    let max = 0
-    
-    maxDepth(root, max)
-    
-    return max
+    const left = root.left
+    const right = root.right
+    return 1 + Math.max(maxDepth(left), maxDepth(right))
     
 };
 
-var maxDepth = (root, max) => {
-    if (root === null) return 0
-    
-    const left = maxDepth(root.left)
-    const right = maxDepth(root.right)
-    
-    return Math.max(left, right) + 1
-}
+
+
+
