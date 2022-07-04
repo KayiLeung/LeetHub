@@ -11,10 +11,11 @@ var merge = function(intervals) {
     
     for (let i = 1; i < intervals.length; i++) {
         const cur = intervals[i]
-        const top = merged[merged.length - 1];
+        const len = merged.length
+        const top = merged[len - 1];
         
         if (top[1] >= cur[0]) {
-            merged[merged.length - 1][1] = Math.max(merged[merged.length - 1][1], cur[1])
+            merged[len - 1][1] = Math.max(merged[len - 1][1], cur[1])
         } else {
             merged.push(cur)
         }
