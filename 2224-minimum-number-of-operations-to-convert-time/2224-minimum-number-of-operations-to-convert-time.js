@@ -19,8 +19,3 @@ var convertTime = function(current, correct) {
     }
     return count
 };
-
-//         while(minDifference >= difference){
-//             minDifference -= difference;
-//             operations++;
-//         }
