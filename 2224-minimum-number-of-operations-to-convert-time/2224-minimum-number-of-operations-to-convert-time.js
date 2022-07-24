@@ -8,7 +8,6 @@ var convertTime = function(current, correct) {
     a = current.split(":")
     b = correct.split(":")
     let diff = (b[1] - a[1]) + ((b[0] - a[0])*60)
-    console.log(diff)
     
     count = 0
     
