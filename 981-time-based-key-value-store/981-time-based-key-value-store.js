@@ -1,29 +1,26 @@
 
 class TimeMap {
-    constructor(){
-        this.map = new Map()
+    constructor() {
+        this.timeMap = new Map()
+        
+    }
+
+    set = (key, val, timestamp, map = this.timeMap) => {
+        if (!map.has(key)) map.set(key, [])
+        map.get(key).push([val, timestamp])
     }
     
-    set(key, value,timestamp, map = this.map) {
-        if (!map.has(key)) {
-            map.set(key, [])
-        }
-    
-        map.get(key).push([value, timestamp])
-    }
-    
-    get(key, timestamp, map = this.map) {
+    get = (key, timestamp, map = this.timeMap) => {
         const arr = map.get(key) || []
-        let [min, max] = [0, arr.length - 1]
+        let min = 0
+        let max = arr.length - 1
         let res = ''
         
         while (min <= max) {
-            let mid = Math.floor((min + max) / 2)
+            const mid = Math.floor((min + max) /2)
             let [val, time] = arr[mid]
             
-            if (timestamp === time) {
-                return val
-            }
+            if (timestamp === time) return val
             if (timestamp >= time) {
                 min = mid + 1
                 res = val
@@ -31,9 +28,9 @@ class TimeMap {
                 max = mid - 1
             }
         }
-        
         return res
     }
+    
 }
 
 /** 
