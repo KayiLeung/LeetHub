@@ -13,32 +13,19 @@
 var levelOrder = function(root) {
   if (!root) return []
   let res = []
-//   let queue = [{node: root, levelNum: 0}]
-  
-//   while (queue.length > 0) {
-//     const {node, levelNum} = queue.shift();
+
+    let queue = [{node: root, lvl:0}]
     
-//     if (res.length === levelNum) {
-//       res[levelNum] = [node.val]
-//     } else {
-//       res[levelNum].push(node.val)
-//     }
-    
-//     if (node.left) queue.push({node: node.left, levelNum: levelNum + 1})
-//     if (node.right) queue.push({node: node.right, levelNum: levelNum + 1})
-//   }
-  
-  let queue = [[root, 0]]
-  while (queue.length > 0) {
-      const [node, lvl] = queue.shift()
-      if (res.length === lvl) {
-          res[lvl] = [node.val]
-      } else {
-          res[lvl].push(node.val)
-      }
-      if (node.left) queue.push([node.left, lvl + 1])
-      if (node.right) queue.push([node.right, lvl + 1])
-  }
-  return res
+    while (queue.length > 0) {
+        const {node, lvl} = queue.shift()
+        if (res.length === lvl) {
+            res[lvl] = [node.val]
+        } else {
+            res[lvl].push(node.val)
+        }
+        if (node.left) queue.push({node: node.left, lvl: lvl + 1})
+        if (node.right) queue.push({node: node.right, lvl: lvl + 1})
+    }
+    return res
 };
 
