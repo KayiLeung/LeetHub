@@ -1,17 +1,17 @@
 
 class TimeMap {
     constructor() {
-        this.timeMap = new Map()
+        this.timeMap = {}
         
     }
 
     set = (key, val, timestamp, map = this.timeMap) => {
-        if (!map.has(key)) map.set(key, [])
-        map.get(key).push([val, timestamp])
+        if (map[key] === undefined) map[key] = []
+        map[key].push([val, timestamp])
     }
     
     get = (key, timestamp, map = this.timeMap) => {
-        const arr = map.get(key) || []
+        const arr = map[key] || []
         let min = 0
         let max = arr.length - 1
         let res = ''
