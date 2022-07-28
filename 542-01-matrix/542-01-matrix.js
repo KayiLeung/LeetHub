@@ -35,21 +35,21 @@ var updateMatrix = function(mat) {
     const r = mat.length
     const c = mat[0].length
     
-    for (let row = 0; row < r; row++) {
+    for (let row = 0 ; row < r; row++) {
         for (let col = 0; col < c; col++) {
-            if (mat[row][col] === 0) continue;
+            if (mat[row][col] === 0)continue
             const top = (row - 1 >= 0) ? mat[row - 1][col] : Infinity
-            const left = (col - 1 >= 0) ? mat[row][col -1] : Infinity
+            const left = (col - 1 >= 0) ? mat[row][col - 1] :Infinity
             mat[row][col] = Math.min(top, left) + 1
         }
     }
     
-        for (let row = r - 1; row >= 0; row--) {
-        for (let col = c - 1; col >= 0; col--) {
-            if (mat[row][col] === 0) continue;
+    for (let row = r - 1 ; row >= 0; row--) {
+        for (let col = c - 1; col >= 0 ; col--) {
+            if (mat[row][col] === 0)continue
             const bottom = (row + 1 < r) ? mat[row + 1][col] : Infinity
-            const right = (col + 1 < c) ? mat[row][col + 1] : Infinity
-            mat[row][col] = Math.min(mat[row][col], (Math.min(bottom, right) + 1))
+            const right = (col + 1 < c) ? mat[row][col + 1] :Infinity
+            mat[row][col] = Math.min(mat[row][col],( Math.min(bottom, right) + 1))
         }
     }
     return mat
