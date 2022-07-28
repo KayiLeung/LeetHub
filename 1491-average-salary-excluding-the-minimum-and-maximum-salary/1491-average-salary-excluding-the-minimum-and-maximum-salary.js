@@ -4,10 +4,9 @@
  */
 var average = function(salary) {
     salary.sort((a, b) => a - b)
-    salary = salary.slice(1, salary.length - 1)
-    let sum = 0
-    for (let s of salary) {
-        sum += s
+    sum = 0
+    for (let i = 1; i < salary.length - 1; i++) {
+        sum += salary[i]
     }
-    return sum/salary.length
+    return sum/(salary.length - 2)
 };
