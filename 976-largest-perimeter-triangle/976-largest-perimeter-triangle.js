@@ -16,6 +16,5 @@ var largestPerimeter = function(nums) {
             res.push(first + second + third)
         }
     }
-    console.log(res)
     return res.length === 0 ? 0 : Math.max(...res)
 };
