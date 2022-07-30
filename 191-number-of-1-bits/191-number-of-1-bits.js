@@ -3,5 +3,10 @@
  * @return {number}
  */
 var hammingWeight = function(n) {
-    return n.toString(2).replaceAll('0', '').length
+    const string = n.toString(2);
+    let output = 0;
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] === '1') output++;
+    }
+    return output;
 };
