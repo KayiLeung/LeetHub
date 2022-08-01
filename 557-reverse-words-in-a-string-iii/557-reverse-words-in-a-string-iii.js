@@ -2,12 +2,33 @@
  * @param {string} s
  * @return {string}
  */
-var reverseWords = function(s) {
-    let words = s.split(' ')
-    for (let i = 0; i < words.length; i++) {
-        let reversed = words[i].split('').reverse().join('')
-        words.splice(i,1, reversed)
-        
+function reverseStr(s) {
+  const res = [];
+
+  let i = 0;
+  let j = s.length - 1;
+
+  while (i <= j) {
+    res[i] = s[j];
+    res[j] = s[i];
+    i++;
+    j--;
+  }
+
+  return res.join('');
+}
+
+function reverseWords(s) {
+  let word = '';
+  let res = '';
+  for (let i = 0; i <= s.length; i++) {
+    if (s[i] !== ' ' && i !== s.length) {
+      word = word + s[i];
+    } else {
+      res = res + reverseStr(word) + (s[i] || ''); // || '' for the last index
+      word = '';
     }
-    return words.join(' ')
-};
+  }
+
+  return res;
+}
