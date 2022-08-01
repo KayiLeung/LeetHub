@@ -8,10 +8,12 @@ var rotate = function(nums, k) {
         const split = nums.splice(nums.length - k)
         nums.unshift(...split)
     } else {
-        for(let i = 0;i < k - nums.length; i++) {
+        const len = k % nums.length
+        for(let i = 0;i < len; i++) {
             let temp = nums.pop()
             nums.unshift(temp)
         }
     }
+
     return nums
 };
