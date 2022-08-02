@@ -5,21 +5,22 @@
  * @return {number[][]}
  */
 var matrixReshape = function(mat, r, c) {
-    let size = r * c
-    
-    let mSize = mat.length * mat[0].length
-    if (size !== mSize) return mat
-    
-    let res = []
-
-    let flatted = mat.flatMap(n => n)
-
-    let start = 0
-    let end = c
-    for (let i = 0; i < r; i++) {
-        res.push(flatted.slice(start, end))
-        start = end
-        end += c
+  const origR = mat.length;
+  const origC = mat[0].length;
+  
+  if (r*c !== origR*origC) {
+    return mat;
+  }
+  
+  const flat = mat.flatMap(n => n);
+  
+  const output = [];
+  for (let i=0; i<flat.length; i++) {
+    if (i%c === 0) {
+      output.push([]);
     }
-    return res
+    
+    output[output.length-1].push(flat[i]);
+  };
+  return output;
 };
