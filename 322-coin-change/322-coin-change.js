@@ -27,8 +27,9 @@ var coinChange = function(coins, amount) {
   const answer = _minChange(amount, coins);
   return answer === Infinity ? -1 : answer;
 };
-
+    
 const _minChange = (amount, coins, memo = {}) => {
+    // console.log(memo)
   if (amount < 0) return Infinity;
   
   if (amount === 0) return 0;
