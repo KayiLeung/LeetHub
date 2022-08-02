@@ -12,10 +12,7 @@ var matrixReshape = function(mat, r, c) {
     
     let res = []
 
-    let flatted = []
-    for (let row of mat) {
-        flatted.push(...row)
-    }
+    let flatted = mat.flatMap(n => n)
 
     let start = 0
     let end = c
