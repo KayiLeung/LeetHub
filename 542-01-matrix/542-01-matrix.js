@@ -32,7 +32,7 @@ var updateMatrix = function(mat) {
     // }
     // return dis
     
-    const r = mat.length
+const r = mat.length
     const c = mat[0].length
     
     for (let row = 0 ; row < r; row++) {
