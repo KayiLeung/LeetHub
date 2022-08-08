@@ -5,46 +5,40 @@
 var orangesRotting = function(grid) {
     const m = grid.length
     const n = grid[0].length
-    let minutes = 0
-    
     let fresh = 0
     let queue = []
-    for (let r = 0; r < m; r++) {
-        for(let c = 0; c < n; c++) {
-            if (grid[r][c] === 1) {
+    let minute = 0
+    
+    for(let i = 0; i< m; i++) {
+        for(let j = 0; j < n;j++) {
+            if (grid[i][j] === 1) {
                 fresh++
-            } else if (grid[r][c] === 2){
-                queue.push([r, c])
+            }
+            if (grid[i][j] === 2) {
+                queue.push([i, j])
             }
         }
     }
-    
-    const dirs = [[1,0],[-1,0],[0,1],[0,-1]]
-    
-    while (queue.length && fresh) {
-        minutes++;
-        let curLen = queue.length;
-        
-        while (curLen--) {
-            const [qr, qc] = queue.shift();
+     
+    const dirs = [[0,1], [1,0], [-1,0],[0,-1]]
+    while(queue.length > 0 && fresh) {
+        minute++
+        let currLen = queue.length
+        while(currLen--) {
+            const [x , y] = queue.shift()
+            for (const [a, b] of dirs) {
+                const newX = x + a
+                const newY = y + b
+                if (0 > newX || newX >= m || 0 > newY || newY >= n || grid[newX][newY] !== 1) continue
+                grid[newX][newY] = 2
+                fresh--
+                queue.push([newX, newY])
+            }
+        }
             
-            for (const [dr, dc] of dirs) {
-                const r = qr + dr;
-                const c = qc + dc;
-                
-                if (r < 0 || c < 0 || r >= m || c >= n || grid[r][c] !== 1) {
-                    continue;
-                }
-                
-                grid[r][c] = 2;
-                queue.push([r, c]);
-                fresh--;
-            }
-        }
     }
+    return fresh === 0 ? minute : -1
     
-    
-    return fresh === 0 ? minutes : -1
 };
 
 
