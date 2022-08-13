@@ -11,16 +11,15 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
-    if (root === null) return true;
+    if (!root) return true
     
-    return _isValidBST(root, -Infinity, Infinity)
-};
-
+    return _isValidBST(root, -Infinity, Infinity) 
+}
 
 var _isValidBST = (root, min, max) => {
-    if (root === null) return true;
+    if (!root) return true
     
-    if (root.val <= min  || root.val >= max) return false
+    if (root.val <= min || root.val >= max) return false
     
-    return _isValidBST(root.left, min, root.val) && _isValidBST(root.right, root.val, max)
+    return (_isValidBST(root.left, min, root.val) && _isValidBST(root.right, root.val, max))
 }
