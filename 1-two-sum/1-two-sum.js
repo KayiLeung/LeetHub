@@ -4,16 +4,12 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
+    let prev = {}
     
-    let prevNums = {}
-    
-    for (let i = 0; i < nums.length; i++) {
-        let subTarget = target - nums[i]
-        if (prevNums.hasOwnProperty(subTarget)) {
-            return [prevNums[subTarget], i]
-        } else {
-            prevNums[nums[i]] = i
-        }
+    for (let i = 0; i < nums.length; i ++) {
+        const num = nums[i]
+        const reminder = target - num
+        if ((reminder in prev)) return [prev[reminder], i]
+        prev[num] = i
     }
-    
 };
