@@ -6,8 +6,6 @@ var spiralOrder = function(matrix) {
     let row = matrix.length
     let col = matrix[0].length
     
-    let dir  = [[0,1], [1,0], [0,-1],[-1,0]]
-    
     let res = []
     let size = row * col
     let x = 0
