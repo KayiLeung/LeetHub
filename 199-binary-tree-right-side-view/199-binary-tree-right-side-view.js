@@ -18,7 +18,7 @@ var rightSideView = function(root) {
     
     while (stack.length) {
        const [node, lvl] = stack.pop()
-        if (node.val !== null) res[lvl] = node.val
+        res[lvl] = node.val
         
         if (node.right) stack.push([node.right, lvl + 1])
         if (node.left) stack.push([node.left, lvl + 1])
