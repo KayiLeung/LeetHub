@@ -11,7 +11,17 @@
  * @param {number} k
  * @return {number}
  */
-var kthSmallest = function(root, k) {
-    const inOrderTraversal = root => !root ? [] : [...inOrderTraversal(root.left), root.val, ...inOrderTraversal(root.right)]
-    return inOrderTraversal(root)[k - 1]
+var kthSmallest = function (root, k) {
+  const stack = [];
+  while (root || stack.length) {
+    if (root) {
+      stack.push(root);
+      root = root.left;
+    } else {
+      const node = stack.pop();
+      k--;
+      if (k === 0) return node.val;
+      root = node.right;
+    }
+  }
 };
