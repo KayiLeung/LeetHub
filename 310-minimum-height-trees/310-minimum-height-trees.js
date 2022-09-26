@@ -6,8 +6,9 @@
 var findMinHeightTrees = function(n, edges) {
     if (n <= 0) return []
     if (n === 1) return [0]
-    
-    let graph = {}
+    const graph = Array.from({ length: n }, () => []);
+    // let graph = {}
+    // console.log(graph)
     let indegree = Array(n).fill(0)
     for (const [a ,b] of edges) {
         if (!(a in graph)) graph[a] = []
@@ -17,7 +18,7 @@ var findMinHeightTrees = function(n, edges) {
         indegree[a]++
         indegree[b]++
     }
-    
+    // console.log(graph)
     let leaves = []
     for (let i = 0 ; i < n; i++) {
         if(indegree[i] === 1) leaves.push(i)
