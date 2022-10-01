@@ -1,7 +1,7 @@
 class TrieNode {
-    constructor(child = {}, end = false){
+    constructor(child = {}, end = false) {
         this.child = child
-        this.end = end
+        this.end = false
     }
 }
 var Trie = function() {
@@ -14,8 +14,8 @@ var Trie = function() {
  */
 Trie.prototype.insert = function(word) {
     let curr = this.root
-    for(const char of word) {
-        if(!curr.child[char]) {
+    for (const char of word) {
+        if (!curr.child[char]) {
             curr.child[char] = new TrieNode()
         }
         curr = curr.child[char]
@@ -29,8 +29,8 @@ Trie.prototype.insert = function(word) {
  */
 Trie.prototype.search = function(word) {
     let curr = this.root
-    for(const char of word) {
-        if(curr.child[char]) {
+    for (const char of word) {
+        if (curr.child[char]) {
             curr = curr.child[char]
         } else {
             return false
@@ -45,12 +45,10 @@ Trie.prototype.search = function(word) {
  */
 Trie.prototype.startsWith = function(prefix) {
     let curr = this.root
-    for(const char of prefix){
+    for (const char of prefix) {
         if (curr.child[char]) {
             curr = curr.child[char]
-        } else {
-            return false
-        }
+        } else return false
     }
     return true
 };
