@@ -21,13 +21,18 @@ MyHashSet.prototype.add = function(key) {
  * @return {void}
  */
 MyHashSet.prototype.remove = function(key) {
-    let prev = []
-    for (let ele of this.hash) {
-        if (ele !== key) {
-            prev.push(ele)
+    if (this.contains) {
+        let prev = []
+        for (let ele of this.hash) {
+            if (ele !== key) {
+                prev.push(ele)
+            }
         }
+        return this.hash = prev
+    } else {
+        return this.hash
     }
-    this.hash = prev
+    
     
 };
 
