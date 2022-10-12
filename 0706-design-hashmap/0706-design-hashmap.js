@@ -1,6 +1,6 @@
 
 var MyHashMap = function() {
-    this.hashmap = []
+    this.hashmap = {}
 };
 
 /** 
@@ -9,13 +9,7 @@ var MyHashMap = function() {
  * @return {void}
  */
 MyHashMap.prototype.put = function(key, value) {
-    for (let set of this.hashmap) {
-        if (set[0] === key) {
-            set[1] = value
-            return this.hashmap
-        }
-    }
-    this.hashmap.push([key, value])
+    this.hashmap[key] = value
 };
 
 /** 
@@ -23,10 +17,7 @@ MyHashMap.prototype.put = function(key, value) {
  * @return {number}
  */
 MyHashMap.prototype.get = function(key) {
-    for (let set of this.hashmap) {
-        if (set[0] === key) return set[1]
-    }
-    return -1
+    return this.hashmap[key] === undefined ? -1 : this.hashmap[key]
 };
 
 /** 
@@ -34,11 +25,7 @@ MyHashMap.prototype.get = function(key) {
  * @return {void}
  */
 MyHashMap.prototype.remove = function(key) {
-    let prev = []
-    for (let set of this.hashmap) {
-        if (set[0] !== key) prev.push(set)
-    }
-    return this.hashmap = prev
+    delete this.hashmap[key]
 };
 
 /** 
