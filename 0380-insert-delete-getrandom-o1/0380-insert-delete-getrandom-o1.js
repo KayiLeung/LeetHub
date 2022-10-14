@@ -1,6 +1,6 @@
 
 var RandomizedSet = function() {
-    this.map = new Map()
+    this.map = new Map() // hashmap -> this.set[2] = true
 };
 
 /** 
@@ -8,9 +8,9 @@ var RandomizedSet = function() {
  * @return {boolean}
  */
 RandomizedSet.prototype.insert = function(val) {
-    const exsisted = this.map.has(val)
+    const existed = this.map.has(val)
     this.map.set(val, true)
-    return !exsisted
+    return !existed
     
 };
 
@@ -19,20 +19,18 @@ RandomizedSet.prototype.insert = function(val) {
  * @return {boolean}
  */
 RandomizedSet.prototype.remove = function(val) {
-    const exsisted = this.map.has(val)
+    const existed = this.map.has(val)
     this.map.delete(val)
-    return exsisted
+    return existed
 };
 
 /**
  * @return {number}
  */
 RandomizedSet.prototype.getRandom = function() {
-    const a = Array.from(this.map.keys())
-    const r = Math.floor(Math.random() * a.length)
-    return a[r]
-    
-    
+    const random = Math.floor(Math.random() * this.map.size)
+    const keys = Array.from(this.map.keys())
+    return keys[random]
 };
 
 /** 
