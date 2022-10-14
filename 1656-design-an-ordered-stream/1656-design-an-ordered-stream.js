@@ -15,12 +15,11 @@ var OrderedStream = function(n) {
 OrderedStream.prototype.insert = function(idKey, value) {
     this.stream[idKey - 1] = value
     let ordered = []
-    for (let i = this.pointer ; i < this.size; i++) {
-        if (!this.stream[i]) return ordered
-        ordered.push(this.stream[i])
+    const start = this.pointer
+    while (this.stream[this.pointer]) {
         this.pointer++
     }
-    return ordered
+    return this.stream.slice(start, this.pointer)
 };
 
 /** 
