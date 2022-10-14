@@ -4,7 +4,6 @@
 var OrderedStream = function(n) {
     this.stream = new Array(n).fill(null) // [null, null, null, null, null]
     this.pointer = 0 //pointer indicate ordered items
-    this.size = n
 };
 
 /** 
@@ -14,7 +13,6 @@ var OrderedStream = function(n) {
  */
 OrderedStream.prototype.insert = function(idKey, value) {
     this.stream[idKey - 1] = value
-    let ordered = []
     const start = this.pointer
     while (this.stream[this.pointer]) {
         this.pointer++
