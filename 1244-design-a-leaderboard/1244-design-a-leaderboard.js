@@ -28,9 +28,8 @@ Leaderboard.prototype.top = function(K) {
     console.log(scores)
     let total = 0
     let i = 0
-    while (K > 0) {
+    while (K > i) {
         total += scores[i]
-        K--
         i++
     }
     return total
