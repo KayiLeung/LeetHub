@@ -1,7 +1,8 @@
-
+//checkIn and checkOut don;t return anything
+//average time return total sum / trips
 var UndergroundSystem = function() {
-    this.checkInCustomer = {} // this.checkInCustomer[key] = [station, time]
-    this.trips = {} // this.trips[start][end] = [total, count]
+    this.checkInCustomer = {} // this.checkInCustomer[id] = [startStation, startTime]
+    this.trips = {} //. this.trips[key] = [total sum, count]
 };
 
 /** 
@@ -11,7 +12,7 @@ var UndergroundSystem = function() {
  * @return {void}
  */
 UndergroundSystem.prototype.checkIn = function(id, stationName, t) {
-    this.checkInCustomer[id] = [stationName, t] //(O(1))
+    this.checkInCustomer[id] = [stationName, t]
 };
 
 /** 
@@ -21,12 +22,11 @@ UndergroundSystem.prototype.checkIn = function(id, stationName, t) {
  * @return {void}
  */
 UndergroundSystem.prototype.checkOut = function(id, stationName, t) {
-    const [startStation, startTime] = this.checkInCustomer[id] // O(1)
+    const [startStation, startTime] = this.checkInCustomer[id]
     const key = startStation + ',' + stationName
-    if (!(key in this.trips)) this.trips[key] = [0, 0]
+    if (!(key in this.trips)) this.trips[key] = [0 ,0]
     this.trips[key][0] += (t - startTime)
     this.trips[key][1] += 1
-     delete this.checkInCustomer[id]
 };
 
 /** 
