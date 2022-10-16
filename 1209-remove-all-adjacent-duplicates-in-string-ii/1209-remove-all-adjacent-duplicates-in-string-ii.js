@@ -8,15 +8,11 @@ var removeDuplicates = function(s, k) {
     let hash = []
     
     for (let char of s) {
-        if (!hash.length) {
+        if (!hash.length || !(hash[hash.length - 1][0] === char)) {
             hash.push([char, 1])
         } else {
-            if (hash[hash.length - 1][0] === char) {
-                hash[hash.length - 1][1] += 1
-                if (hash[hash.length - 1][1] === k) hash.pop()
-            } else {
-                hash.push([char, 1])
-            }
+            hash[hash.length - 1][1] += 1
+            if (hash[hash.length - 1][1] === k) hash.pop()
         }
     }
     let res = ''
