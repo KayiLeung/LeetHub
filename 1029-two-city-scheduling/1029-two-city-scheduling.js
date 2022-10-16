@@ -3,16 +3,19 @@
  * @return {number}
  */
 var twoCitySchedCost = function(costs) {
-    sorted = costs.sort((a, b) => (a[0] - a[1]) - (b[0] - b[1]))
+   // sort costs by city a and city b different from low to high
+    
+    costs.sort((a , b) => (a[0] - a[1]) - (b[0] - b[1])) //[-170, -10, 10, 350]
+    const half = costs.length / 2 // 2
     let total = 0
-    let half = sorted.length / 2
-    for (let i = 0 ; i < sorted.length; i++) {
-        const [a, b] = sorted[i]
-        if (i < half) {
-            total += a
-        } else {
-            total += b
-        }
+    
+    //the first half of cities are lower cost to fly to city a
+    for (let i = 0 ; i < costs.length; i++) {
+        if (i < half) total += costs[i][0]
+        else total += costs[i][1]
     }
+    
+    //the other half of cities are lower cost to fly to city b
+    // return first half  + other half
     return total
 };
