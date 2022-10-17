@@ -7,6 +7,7 @@ var minMeetingRooms = function(intervals) {
     //0.    5.   15.  
     //10.   20.   30. 
     // how many rooms need by looking for how the first meeting endtime
+    if (intervals.length < 2) return intervals.length
     let startTime = []
     let endTime = []
     
