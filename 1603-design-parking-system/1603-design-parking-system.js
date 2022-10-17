@@ -4,10 +4,11 @@
  * @param {number} small
  */
 var ParkingSystem = function(big, medium, small) {
-    this.parking = {}
-    this.parking[1] = big
-    this.parking[2] = medium
-    this.parking[3] = small
+    // this.parking = {}
+    // this.parking[1] = big
+    // this.parking[2] = medium
+    // this.parking[3] = small
+    this.parking = {1 : big, 2: medium, 3: small}
 };
 
 /** 
