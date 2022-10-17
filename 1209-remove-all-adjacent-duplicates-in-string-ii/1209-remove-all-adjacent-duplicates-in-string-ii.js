@@ -3,34 +3,42 @@
  * @param {number} k
  * @return {string}
  */
+
+//use stack
+//iterate each char in s
+//if hash is empty or last element of stack is not equal to current char
+//push current char and count as 1 into stack
+//if current char is same as last element of stack, this element increment 1
+//then check this element count equal to k or not
+//if so, pop it out from hash
+
+//set variable res as empty str
+//literate eles in stack
+//use helper method repeat to reconstruct str
+//return res
 var removeDuplicates = function(s, k) {
-    //hashtable stores as array => [char, count]
-    let hash = []
+    let stack = [] // [[char, count]]
     
-    for (let char of s) {
-        if (!hash.length || !(hash[hash.length - 1][0] === char)) {
-            hash.push([char, 1])
+    for(let char of s) {
+        if (!stack.length || stack[stack.length - 1][0] !== char) {
+            stack.push([char, 1])
         } else {
-            hash[hash.length - 1][1] += 1
-            if (hash[hash.length - 1][1] === k) hash.pop()
+            stack[stack.length - 1][1] += 1
+            if (stack[stack.length - 1][1] === k) stack.pop()
         }
     }
+    
     let res = ''
-    for (let [char, count] of hash) {
+    for (let [char, count] of stack) {
         res += repeat(char, count)
     }
     return res
-    //if curr char is not same as last hash ele, push [curr char, count]
-    //if curr char same as last hash ele, last hash [curr char, count + 1]
-    //if curr char count === k , pop this out from hashtable
-    //return hashtable and use method join('') when iterate thur s
-    //time complexity O(n) n = s.length, space complexity worest case:O(n)
 };
 
 const repeat = (char, count) => {
-    let res = ''
+    let str = ''
     for (let i = 0 ; i < count; i++) {
-        res += char
+        str += char
     }
-    return res
+    return str
 }
