@@ -1,10 +1,7 @@
-
+//data structure -> hashtable
+//new instance -> this.player[id] = 0
 var Leaderboard = function() {
-    //hash table for storing playerId and score
-    //object.values and sorted is from high to low score
-    //literate array of scores return the top k players
-    //
-    this.players = {}
+    this.players = {} //this.player[id] = 0
 };
 
 /** 
@@ -13,8 +10,11 @@ var Leaderboard = function() {
  * @return {void}
  */
 Leaderboard.prototype.addScore = function(playerId, score) {
+   //check is that player in the hash table
     if (!(playerId in this.players)) this.players[playerId] = 0
+    //if not, add this player to the hash table
     this.players[playerId] += score
+    //if so, sum up this player previous socre and current score
 };
 
 /** 
@@ -22,19 +22,17 @@ Leaderboard.prototype.addScore = function(playerId, score) {
  * @return {number}
  */
 Leaderboard.prototype.top = function(K) {
-    const scores = Object.values(this.players)
-    
-    scores.sort((a, b) => ( b - a))
-    console.log(scores)
-    let total = 0
-    let i = 0
-    while (K > i) {
-        total += scores[i]
-        i++
+    //create a variable, scores to store all scores from hash table
+    //sort scores from high to low
+    //increment top k scores and return the total
+    let scores = Object.values(this.players)
+    let sum = 0
+    scores.sort((a, b) => b - a);
+    for (let i = 0 ; i < K; i++) {
+        sum += scores[i]
     }
-    return total
-};
-
+    return sum
+}
 /** 
  * @param {number} playerId
  * @return {void}
