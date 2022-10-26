@@ -1,29 +1,28 @@
 class Solution:
-    def addBinary(self, a: str, b: str) -> str:
-        list_a = list(a)
-        list_b = list(b)
-        res = ''
-        carry = 0
+    def addBinary(self, a, b) -> str:
+        n = max(len(a), len(b))
+        a, b = a.zfill(n), b.zfill(n)
         
-        while list_a or list_b:
-            if not list_a:
-                num_a = 0
+        carry = 0
+        answer = []
+        for i in range(n - 1, -1, -1):
+            if a[i] == '1':
+                carry += 1
+            if b[i] == '1':
+                carry += 1
+                
+            if carry % 2 == 1:
+                answer.append('1')
             else:
-                num_a = int(list_a.pop())
-            if not list_b:
-                num_b = 0
-            else:
-                num_b = int(list_b.pop())
-            sum = num_a + num_b + carry
+                answer.append('0')
             
-            
-            res = str(sum % 2) + res
-            carry = sum // 2
+            carry //= 2
         
         if carry == 1:
-            res = str(carry) + res
+            answer.append('1')
+        answer.reverse()
         
-        return res
+        return ''.join(answer)
             
             
             
