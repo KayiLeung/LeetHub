@@ -21,7 +21,6 @@ var matrixBlockSum = function(mat, k) {
             dp[i][j] += dp[i - 1][j]
         }
     }
-    console.log(dp)
     for (let i = 0; i < m; i++) {
         let r1 = Math.max(0, i - k)
         let r2 = Math.min(m - 1, i + k)
