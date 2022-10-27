@@ -6,10 +6,11 @@
 var matrixBlockSum = function(mat, k) {
     let m = mat.length
     let n = mat[0].length
-    dp = Array.from(new Array(m), () => new Array(n).fill(0))
+    dp = Array(m)
     
     for (let i = 0; i < m ; i++) {
         let sum = 0
+        dp[i] = Array(n).fill(0)
         for(let j = 0; j < n; j++) {
             dp[i][j] += mat[i][j] + sum
             sum = dp[i][j]
