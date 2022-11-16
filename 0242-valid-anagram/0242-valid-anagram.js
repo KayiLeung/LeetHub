@@ -14,6 +14,7 @@
     
 */
 var isAnagram = function(s, t) {
+    if (s.length !== t.length) return false
     let chars = {}
     
     for (let char of s) {
@@ -27,5 +28,5 @@ var isAnagram = function(s, t) {
         if (chars[char] < 0) return false
     }
     
-    return Object.values(chars).every(ele => ele === 0)
+    return true
 };
