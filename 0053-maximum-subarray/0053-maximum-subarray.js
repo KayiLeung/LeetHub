@@ -4,20 +4,16 @@
  */
 var maxSubArray = function(nums) {
     let max = -Infinity
-    let curr = 0
-    for (let n of nums) {
-        if (curr + n < 0) {
-            curr = 0
-            continue
+
+    let currSum = 0
+    for (let num of nums) {
+        currSum += num
+        if (currSum < 0) {
+            max = Math.max(currSum, max)
+            currSum = 0
         } else {
-            curr += n
-            
+            max = Math.max(currSum, max)
         }
-        max = Math.max(max, curr)
-    }
-    if (max === -Infinity) {
-        nums.sort((a , b) => a - b)
-        return nums.at(-1)
     }
     return max
-};
+}
