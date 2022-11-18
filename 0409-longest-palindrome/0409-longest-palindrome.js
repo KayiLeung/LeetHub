@@ -15,8 +15,14 @@ var longestPalindrome = function(s) {
     let odd = false
     for (let char in chars) {
         const count = chars[char]
-        if (count % 2 === 1) odd = true
-        res += (Math.floor(count / 2) * 2)
+        if (count % 2 === 1) {
+            odd = true
+            res += (Math.floor(count / 2) * 2)
+        } else {
+            res += count
+        }
+        
+        
     }
     return odd === true ? res + 1: res
 };
