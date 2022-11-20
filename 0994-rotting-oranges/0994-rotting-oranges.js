@@ -5,54 +5,47 @@
 var orangesRotting = function(grid) {
     let rotten = []
     let fresh = 0
-    const m = grid.length, n = grid[0].length
-    let checked = new Set()
-    let min = 0
+    let res = 0
+    const check = new Set()
+    const er = grid.length
+    const ec = grid[0].length
     
-    for (let i = 0; i < m; i++) {
-        for(let j = 0; j < n; j++) {
-            if (grid[i][j] == 2) {
-                rotten.push([i, j])
-                const pos = i + ',' + j
-                checked.add(pos)
-                
-            } else if (grid[i][j] == 1) {
-                fresh++
+    const deltas = [[1,0],[0,1],[0,-1],[-1,0]]
+    const inbound = (r, c, m, n) => {
+        return r >= 0 && c >= 0 && r < m && c < n
+    }
+    for (let r = 0; r < er; r++) {
+        for (let c = 0; c < ec; c++) {
+            if (grid[r][c] === 2) {
+                rotten.push([r, c])
             }
+            if (grid[r][c] === 1) fresh++
         }
     }
-    const t = rotten[0]
-
     if (fresh === 0) return 0
-    
-    const deltas = [[1,0], [0,1],[-1,0],[0,-1]]
-    const inbound = (r, c, er, ec) => {
-        return r >= 0 && c >= 0 && r < er && c < ec
-    }
-    
-    while (fresh > 0 && rotten.length > 0) {
-        let currRotten = rotten.length
-        while (currRotten > 0) {
+    while (rotten.length > 0 && fresh > 0) {
+        
+        let len = rotten.length
+        while (len > 0) {
             const [r, c] = rotten.shift()
-            currRotten--
+            len--
             for (const [dr, dc] of deltas) {
-                const row = r + dr
-                const col = c + dc
-
-                if (inbound(row, col, m, n)) {
-                    const pos = row + ',' + col
-                    if (checked.has(pos)) continue
-                    if (grid[row][col] == 1) {
-                        rotten.push([row, col])
-                        grid[row][col] = 2
+                const newRow = dr + r
+                const newCol = dc + c
+                if (inbound(newRow, newCol, er, ec)) {
+                    const pos = newRow + ',' + newCol
+                    if (check.has(pos)) continue
+                    if (grid[newRow][newCol] === 1) {
+                        rotten.push([newRow, newCol])
+                        grid[newRow][newCol] = 2
                         fresh--
                     }
-                    checked.add(pos)
+                    check.add(pos)
                 }
             }
+            
         }
-        min++
+        res++
     }
-    
-    return fresh === 0 ? min : -1
+    return fresh === 0 ? res : -1
 };
