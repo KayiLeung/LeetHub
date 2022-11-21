@@ -3,21 +3,15 @@
  * @return {number[][]}
  */
 var permute = function(nums) {
-    if(nums.length === 1){
-        return [nums];
-    }
+    if (nums.length === 0) return [[]]
+    const res = []
+    const first = nums[0]
+    const permsWithoutFirst = permute(nums.slice(1))
     
-    const permutations = [];
-        
-    for(let i=0; i<nums.length; i++){
-        const num = nums[i];
-        const nextPermutations = permute(nums.filter(n => n !== num));
-        
-        for(let j=0; j<nextPermutations.length; j++){
-            nextPermutations[j].unshift(num);
+    for (let perm of permsWithoutFirst) {
+        for (let i = 0; i <= perm.length; i++) {
+            res.push([...perm.slice(i), first, ...perm.slice(0, i)])
         }
-        permutations.push(...nextPermutations);
     }
-    
-    return permutations;
+    return res
 };
