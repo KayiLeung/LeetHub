@@ -16,16 +16,14 @@ var isValid = function(s) {
         "[" : "]",
         "(" : ")"
     }
-    
-    let stack = []
-    
-    for (let i = 0; i < s.length; i++) {
-        const char = s[i]
-        if (char in brackets) {
-            stack.push(char)
+    const stack = [s[0]]
+    for (let i = 1; i < s.length; i++) {
+        const curr = s[i]
+        if (curr in brackets) {
+            stack.push(curr)
         } else {
             const last = stack.pop()
-            if (brackets[last] !== char) return false
+            if (brackets[last] !== curr) return false
         }
     }
     return stack.length === 0
