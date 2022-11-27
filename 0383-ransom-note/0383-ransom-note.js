@@ -4,18 +4,15 @@
  * @return {boolean}
  */
 var canConstruct = function(ransomNote, magazine) {
-    if (ransomNote.length > magazine.length) return false
-    
-    let notes = {}
-    for (let n of magazine) {
-        if (!(n in notes)) notes[n] = 0
-        notes[n] += 1
+    let chars = {}
+    for (let char of magazine) {
+        if (!chars.hasOwnProperty(char)) chars[char] = 0
+        chars[char] += 1
     }
-    
-    for (let n of ransomNote) {
-        if (!(n in notes)) return false
-        notes[n] -= 1
-        if (notes[n] < 0) return false
+    for (let char of ransomNote) {
+        if (!chars.hasOwnProperty(char)) return false
+        chars[char] -= 1
+        if (chars[char] < 0) return false
     }
     return true
 };
