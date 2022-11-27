@@ -19,7 +19,7 @@ var isValid = function(s) {
     const stack = [s[0]]
     for (let i = 1; i < s.length; i++) {
         const curr = s[i]
-        if (curr in brackets) {
+        if (brackets.hasOwnProperty(curr)) {
             stack.push(curr)
         } else {
             const last = stack.pop()
