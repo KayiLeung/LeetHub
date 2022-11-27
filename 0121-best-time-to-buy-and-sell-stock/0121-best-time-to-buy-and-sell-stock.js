@@ -3,13 +3,12 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let min = Infinity
-    let maxProfit = 0
+    let min = prices[0]
+    let max = 0
     
     for (let p of prices) {
-        min = Math.min(p, min)
-        const currProfit = p - min
-        maxProfit = Math.max(maxProfit, currProfit)
+        max = Math.max(max, p - min)
+        min = Math.min(min, p)
     }
-    return maxProfit
+    return max
 };
