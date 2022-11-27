@@ -10,12 +10,6 @@
  * @param {ListNode} list2
  * @return {ListNode}
  */
-
-/*
-    comparsion the first node in each lists, if the node is the smallest one, set that list as starter
-    recursively compare two list until both or all one of the list become empty, add the rest of node to the sorted list
-    return sorted list
-*/
 var mergeTwoLists = function(list1, list2) {
     if (!list1 && !list2) return null
     if (!list1) return list2
