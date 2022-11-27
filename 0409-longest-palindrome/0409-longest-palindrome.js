@@ -3,26 +3,18 @@
  * @return {number}
  */
 var longestPalindrome = function(s) {
+    let odd = false
     let chars = {}
-    
-    for (let ch of s) {
-        if(!(ch in chars)) {
-            chars[ch] = 0
+    for (let char of s) {
+        if (!chars.hasOwnProperty(char)) {
+            chars[char] = 0
         }
-        chars[ch] += 1
+        chars[char] += 1
     }
     let res = 0
-    let odd = false
     for (let char in chars) {
-        const count = chars[char]
-        if (count % 2 === 1) {
-            odd = true
-            res += (Math.floor(count / 2) * 2)
-        } else {
-            res += count
-        }
-        
-        
+        if (chars[char] % 2 === 1) odd = true
+        res += ~~(chars[char] / 2) * 2
     }
-    return odd === true ? res + 1: res
+    return odd ? res + 1 : res
 };
