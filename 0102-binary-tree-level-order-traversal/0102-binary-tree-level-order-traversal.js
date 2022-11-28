@@ -12,15 +12,17 @@
  */
 var levelOrder = function(root) {
     if (!root) return []
-    let res = []
-    let stack = [[root, 0]]
+    let levels = []
+    let stack = [{node:root, lvl:0}]
     
-    while (stack.length) {
-        const [node, level] = stack.pop()
-        if (res.length === level) res[level] = []
-        res[level].push(node.val)
-        if (node.right) stack.push([node.right, level + 1])
-        if (node.left) stack.push([node.left, level + 1])
+    while (stack.length > 0) {
+        const {node, lvl} = stack.pop()
+        if (levels.length === lvl) levels[lvl] = []
+        levels[lvl].push(node.val)
+        if (node.right) stack.push({node: node.right, lvl: lvl + 1})
+        if (node.left) stack.push({node: node.left, lvl: lvl + 1})
+        
     }
-    return res
+    return levels
+    
 };
