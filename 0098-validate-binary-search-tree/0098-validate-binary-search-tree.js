@@ -12,10 +12,10 @@
  */
 var isValidBST = function(root) {
     if (!root) return true
-    return _isValidBST(root, -Infinity, Infinity)
+    return _isValidBST(root)
 };
 
-const _isValidBST = (root, min, max) => {
+const _isValidBST = (root, min = -Infinity, max = Infinity) => {
     if (!root) return true
     if (root.val <= min || root.val >= max) return false
     
