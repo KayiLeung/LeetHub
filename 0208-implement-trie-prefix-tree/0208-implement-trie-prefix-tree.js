@@ -1,5 +1,5 @@
-class TrieNode{
-    constructor(children = {}, end = false){
+class TrieNode {
+    constructor(children = {}, end = false) {
         this.children = children
         this.end = end
     }
@@ -14,8 +14,9 @@ var Trie = function() {
  */
 Trie.prototype.insert = function(word) {
     let curr = this.root
-    for (let char of word) {
-        if (!curr.children[char]) {
+    for (let i = 0; i < word.length; i++) {
+        const char = word[i]
+        if (!curr.children.hasOwnProperty(char)) {
             curr.children[char] = new TrieNode()
         }
         curr = curr.children[char]
@@ -29,9 +30,12 @@ Trie.prototype.insert = function(word) {
  */
 Trie.prototype.search = function(word) {
     let curr = this.root
-    for (let char of word) {
-        if (!(char in curr.children)) return false
-        curr= curr.children[char]
+    for (let i = 0; i < word.length; i++) {
+        const char = word[i]
+        if (!curr.children.hasOwnProperty(char)) {
+            return false
+        }
+        curr = curr.children[char]
     }
     return curr.end
 };
@@ -42,9 +46,12 @@ Trie.prototype.search = function(word) {
  */
 Trie.prototype.startsWith = function(prefix) {
     let curr = this.root
-    for (let char of prefix) {
-        if (!(char in curr.children)) return false
-        curr= curr.children[char]
+    for (let i = 0; i < prefix.length; i++) {
+        const char = prefix[i]
+        if (!curr.children.hasOwnProperty(char)) {
+            return false
+        }
+        curr = curr.children[char]
     }
     return true
 };
