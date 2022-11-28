@@ -13,14 +13,14 @@
 var levelOrder = function(root) {
     if (!root) return []
     let levels = []
-    let stack = [{node:root, lvl:0}]
+    let queue = [{node:root, lvl:0}]
     
-    while (stack.length > 0) {
-        const {node, lvl} = stack.pop()
+    while (queue.length > 0) {
+        const {node, lvl} = queue.shift()
         if (levels.length === lvl) levels[lvl] = []
         levels[lvl].push(node.val)
-        if (node.right) stack.push({node: node.right, lvl: lvl + 1})
-        if (node.left) stack.push({node: node.left, lvl: lvl + 1})
+        if (node.left) queue.push({node: node.left, lvl: lvl + 1})
+        if (node.right) queue.push({node: node.right, lvl: lvl + 1})
         
     }
     return levels
