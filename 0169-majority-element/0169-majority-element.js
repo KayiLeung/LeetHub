@@ -3,16 +3,16 @@
  * @return {number}
  */
 var majorityElement = function(nums) {
-    let main = {}
-    let res = null
-    let max = 0
+    let count = {}
+    let main = null
+    let max = -Infinity
     for (let n of nums) {
-        if (!(n in main)) main[n] = 0
-        main[n] += 1
-        if (main[n] > max) {
-            max = main[n]
-            res = n
+        if (!count.hasOwnProperty(n)) count[n] = 0
+        count[n] += 1
+        if (count[n] > max) {
+            max = count[n]
+            main = n
         }
     }
-    return res
+    return main
 };
