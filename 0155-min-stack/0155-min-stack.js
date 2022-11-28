@@ -9,18 +9,18 @@ var MinStack = function() {
  * @return {void}
  */
 MinStack.prototype.push = function(val) {
-    if (this.stack1.length === 0 || val <= this.stack1.at(-1)) {
-        this.stack1.push(val)
+    this.stack1.push(val)
+    if (this.stack2.length === 0 || this.stack2.at(-1) >= val) {
+        this.stack2.push(val)
     }
-    this.stack2.push(val)
 };
 
 /**
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-    const popped = this.stack2.pop()
-    if (popped === this.stack1.at(-1)) this.stack1.pop()
+    const popped = this.stack1.pop()
+    if (this.stack2.at(-1) === popped) this.stack2.pop()
     return popped
 };
 
@@ -28,14 +28,18 @@ MinStack.prototype.pop = function() {
  * @return {number}
  */
 MinStack.prototype.top = function() {
-    return this.stack2.at(-1)
+    return this.stack1.at(-1)
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.getMin = function() {
-    return this.stack1.at(-1)
+    if (this.stack2.length) {
+        return this.stack2.at(-1)
+    } else {
+        return this.stack1.at(-1)
+    }
 };
 
 /** 
