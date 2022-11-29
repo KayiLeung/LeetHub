@@ -5,30 +5,26 @@
 
     
 const letters = {
-    2: 'abc',
-    3: 'def',
-    4: 'ghi',
-    5: 'jkl',
-    6: 'mno',
-    7: 'pqrs',
-    8: 'tuv',
-    9: 'wxyz'
+    '2': 'abc',
+    '3': 'def',
+    '4': 'ghi',
+    '5': 'jkl',
+    '6': 'mno',
+    '7': 'pqrs',
+    '8': 'tuv',
+    '9': 'wxyz'
 }
 
 var letterCombinations = function(digits) {
-    
-    if (!digits.length) return []
+    if (digits.length === 1) return letters[digits[0]].split('')
+    if (digits.length === 0) return []
     let res = []
-    const digit = digits[0]
-    let sub = letterCombinations(digits.slice(1))
-
+    let rest = letterCombinations(digits.slice(1))
     
-    for(let l of letters[digit]) {
-        for (let ch of sub) {
-            res.push(l + ch)
+    for (let r of rest) {
+        for (let char of letters[digits[0]]) {
+            res.push(char + r)
         }
     }
-
-    if (res.length === 0) res = [...letters[digit]]
     return res
 };
