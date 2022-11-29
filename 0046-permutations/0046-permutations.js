@@ -3,14 +3,14 @@
  * @return {number[][]}
  */
 var permute = function(nums) {
-    if (nums.length === 0) return [[]]
-    const res = []
-    const first = nums[0]
-    const permsWithoutFirst = permute(nums.slice(1))
+    if (nums.length <= 1) return [nums]
+    let res = []
     
-    for (let perm of permsWithoutFirst) {
-        for (let i = 0; i <= perm.length; i++) {
-            res.push([...perm.slice(i), first, ...perm.slice(0, i)])
+    const rest = permute(nums.slice(1))
+    const first = nums[0]
+    for (let r of rest) {
+        for (let i = 0; i <= r.length; i++) {
+            res.push([...r.slice(i), first, ...r.slice(0, i)])
         }
     }
     return res
